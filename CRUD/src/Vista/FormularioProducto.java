@@ -17,8 +17,10 @@ public class FormularioProducto extends javax.swing.JFrame {
 
     ControladorABMProducto ctrlABMProducto;
     
+    
     public FormularioProducto() {
         initComponents();
+        jTextFieldId.setVisible(false);
     }
 
     /**
@@ -90,6 +92,12 @@ public class FormularioProducto extends javax.swing.JFrame {
         });
 
         jButtonBuscar.setText("Buscar");
+
+        jTextFieldId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldIdActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -204,6 +212,10 @@ public class FormularioProducto extends javax.swing.JFrame {
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
+
+    private void jTextFieldIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdActionPerformed
+        // TODO a your handling code here:
+    }//GEN-LAST:event_jTextFieldIdActionPerformed
 
     /**
      * @param args the command line arguments

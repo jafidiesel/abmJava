@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.ControladorABMProducto;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -173,7 +174,12 @@ public class FormularioProducto extends javax.swing.JFrame {
        
        ctrlABMProducto = new ControladorABMProducto();
        
-       
+       boolean resultado = ctrlABMProducto.agregarProducto(codigo, nombre, precio, cantidad);
+       if(resultado){
+           JOptionPane.showMessageDialog(null, "Registro guardado");
+       }else{
+           JOptionPane.showMessageDialog(null, "Registro no guardado");
+       }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jTextFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoActionPerformed

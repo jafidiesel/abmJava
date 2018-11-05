@@ -13,6 +13,15 @@ public class Criterio {
     private String atributo;
     private String operacion;
     private String valor;
+    private String tipo;
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
     
     //Tambien se puede agregar un atributo orden
 

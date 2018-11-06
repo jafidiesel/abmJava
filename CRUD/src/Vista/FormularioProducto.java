@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.ControladorABMProducto;
+import Modelo.DTOBusqueda;
 import javax.swing.JOptionPane;
 
 
@@ -16,6 +17,7 @@ import javax.swing.JOptionPane;
 public class FormularioProducto extends javax.swing.JFrame {
 
     ControladorABMProducto ctrlABMProducto;
+    DTOBusqueda dto;
     
     
     public FormularioProducto() {
@@ -63,6 +65,12 @@ public class FormularioProducto extends javax.swing.JFrame {
 
         jLabel4.setText("Cantidad");
 
+        jTextFielCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFielCantidadActionPerformed(evt);
+            }
+        });
+
         jButtonGuardar.setText("Guardar");
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +100,11 @@ public class FormularioProducto extends javax.swing.JFrame {
         });
 
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
 
         jTextFieldId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,6 +215,7 @@ public class FormularioProducto extends javax.swing.JFrame {
        String id = jTextFieldId.getText();
        
        ctrlABMProducto = new ControladorABMProducto();
+       
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
@@ -216,6 +230,23 @@ public class FormularioProducto extends javax.swing.JFrame {
     private void jTextFieldIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdActionPerformed
         // TODO a your handling code here:
     }//GEN-LAST:event_jTextFieldIdActionPerformed
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+         int codigo = Integer.parseInt(jTextFieldCodigo.getText() );
+         ctrlABMProducto = new ControladorABMProducto();
+         
+         DTOBusqueda dto = ctrlABMProducto.buscarProductoPorId(codigo);
+         
+        jTextFieldId.setText(dto.getValor(0));
+        jTextFieldCodigo.setText(dto.getValor(1));
+        jTextFieldNombre.setText(dto.getValor(2));
+        jTextFieldPrecio.setText(dto.getValor(3));
+        jTextFielCantidad.setText(dto.getValor(4));
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jTextFielCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFielCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFielCantidadActionPerformed
 
     /**
      * @param args the command line arguments

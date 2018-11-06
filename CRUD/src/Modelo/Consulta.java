@@ -81,11 +81,9 @@ public class Consulta {
         connection = conexion.getConexion();
         ResultSet rs = null;
 
-
         DTOBusqueda dto = new DTOBusqueda();
        
         String sql = "SELECT * FROM " + objetoABuscar + " WHERE " + criterio.getAtributo() + " = " + criterio.getValor();
-        System.out.println(sql);
         
         try{
             ps = connection.prepareStatement(sql);
@@ -123,33 +121,28 @@ public class Consulta {
         connection = conexion.getConexion();
         
         String sql;
-        String campos = "";
-        String valores = "";
+        String condicion = "";
         
         sql = "UPDATE "+ objetoAActualizar + " SET ";
         
         int index = 0;
         for ( Criterio elemento : arrayListCriterios){
             String comillas = "";
-            if( elemento.getTipo() == "String"){
+            if( elemento.getTipo().equals("String")){
                 comillas = "'";
             }
             
-            if( index == 0 ){
-                campos = " (" + elemento.getAtributo() + ",";
-                valores = " VALUES (" + comillas + elemento.getValor() + comillas + ",";
-            } else if ( index == (arrayListCriterios.size() -1) ){
-                campos = campos + elemento.getAtributo() + ")";
-                valores = valores+ comillas + elemento.getValor() + comillas + ")";
-            } else{
-                campos = campos + elemento.getAtributo() + ",";
-                valores = valores + comillas + elemento.getValor() + comillas + ",";
+            if (index == 0) {
+                condicion = elemento.getAtributo() + " = " + comillas + elemento.getValor();
+            }else  if ( index < arrayListCriterios.size() -1 ){
+                sql = sql + elemento.getAtributo() + " = " + comillas + elemento.getValor() + comillas + " , ";
+            } else {
+                sql = sql + elemento.getAtributo() + " = " + comillas + elemento.getValor() + comillas;
             }
-            
             index++;
         }
         
-        sql = sql + campos + valores;
+        sql = sql + " WHERE " + condicion;
         
         try{
             ps = connection.prepareStatement(sql);
@@ -163,7 +156,6 @@ public class Consulta {
             
         }finally{
             try {
-                
                 connection.close();
             } catch (SQLException ex) {
                 System.err.println(ex);

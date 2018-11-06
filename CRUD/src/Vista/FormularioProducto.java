@@ -212,10 +212,11 @@ public class FormularioProducto extends javax.swing.JFrame {
        String nombre = jTextFieldNombre.getText() ;
        int cantidad = Integer.parseInt(jTextFielCantidad.getText() );
        int precio = Integer.parseInt( jTextFieldPrecio.getText() );
-       String id = jTextFieldId.getText();
+       int id = Integer.parseInt(jTextFieldId.getText());
        
        ctrlABMProducto = new ControladorABMProducto();
        
+       ctrlABMProducto.actualizarProducto(id, codigo, nombre, precio, cantidad);
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
